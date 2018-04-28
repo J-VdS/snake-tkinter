@@ -80,8 +80,10 @@ class Snake(object):
             
     def vxvy(self, evt):
         key = evt.keysym
-        self.vx = -10*(key == 'Left') + 10*(key == 'Right')
-        self.vy = -10*(key == 'Up') + 10*(key == 'Down')
+        self.vx = -10*(key == 'Left') + 20*(key == 'Left')*(self.vx == 10) + \
+                  10*(key == 'Right') - 20*(key == 'Right')*(self.vx == -10)
+        self.vy = -10*(key == 'Up') + 20*(key == 'Up')*(self.vy == 10) + \
+                  10*(key == 'Down') - 20*(key == 'Down')*(self.vy == -10)
 
     def get_trail(self):
         return self.trail
@@ -105,10 +107,6 @@ def food(info, trail):
     
     return (a, b), foodblok
 
-                             
-    
-    
-            
         
 #initialisatie spel
 
